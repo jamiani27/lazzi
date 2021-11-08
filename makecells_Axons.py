@@ -1,6 +1,11 @@
 #python conversion of makecells_Axons.hoc
 #started 11/3/21
 
+
+from neuron import h
+h.xopen("makecells_Axons.hoc")
+
+
 ''' 
 
 the following is the file NOT converted into python format:
