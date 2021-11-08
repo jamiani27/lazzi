@@ -4,7 +4,7 @@ Ver1: AS
 1.Load hoc file to make same cell
 2.Give current clamp onto the cell
 3.Record the voltage
-
+​
 Need 'makecells_Axon.hoc' file along with
 1. Mod files
 2. Morphology files
