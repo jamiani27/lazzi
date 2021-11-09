@@ -8,6 +8,8 @@ Ver1: AS
 Need 'makecells_Axon.hoc' file along with
 1. Mod files
 2. Morphology files
+
+Put this file in the same folder as .hoc file
 '''
 
 from neuron import h
