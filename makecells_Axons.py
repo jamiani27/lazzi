@@ -17,6 +17,7 @@ import plotly
 #Test for push
 #Create cell
 # h.load_file('init_Axon_TimeCourse.hoc')
+h.load_file("stdrun.hoc")
 h.load_file('makecells_Axons.hoc')
 #axon is distal axon, dend_5 is AH, dend_6 is SOCB, dend_7 is NS
 
