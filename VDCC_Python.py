@@ -10,9 +10,9 @@ Still remains to be done:
 - Use Voltage Clamp and plot Ca current with 3 different channels
 - Modularize the code. A good example can be found here:
   https://neuron.yale.edu/neuron/static/docs/neuronpython/ballandstick3.html
-
 @author:Sangwon, Arthur, jmbouteiller
 """
+
 import neuron
 from neuron import h, rxd
 from neuron.units import nM, uM
@@ -38,7 +38,6 @@ gcabar_T = 8e-12*scale # molecules/um2 ms mV (was 8e-6 #uS)
 gl = 0.0003*scale # (was 0.001413716 #uS) molecules/um2 ms mV, assuming 30 um soma diameter and transmembrane resistance of 20000 Ohm*cm^2
 el = -70
 q10 = 3.0**((h.celsius - 37.0)/10.0)
-
 
 #Na channel
 #m-gate
@@ -66,7 +65,6 @@ ntau = 1.0/(q10 * (alpha + beta))
 ninf = alpha/(alpha + beta)
 
 #Ca channel
-
 #T-channel
 #m-gate
 alpha = 0.2*vtrap((-v + 19.26), 10)
@@ -121,14 +119,12 @@ caecs = rxd.Parameter(ecs, name = 'ca', charge = 2, value = 1.0)
 
 #Leak
 x = rxd.Species([cyt, mem, ecs], name = 'x', charge = 1)
-
 ki = k[cyt]
 ko = kecs[ecs]
 nai = na[cyt]
 nao = naecs[ecs]
 xi = x[cyt]
 xo = x[ecs]
-
 cai = ca[cyt]
 cao = caecs[ecs]
 
@@ -154,7 +150,6 @@ m_gate_N = rxd.Rate(mgate_N, (minf_N-mgate_N)/tau_Nm)
 h_gate_N = rxd.Rate(hgate_N, (hinf_N-hgate_N)/tau_Nh)
 m_gate_L = rxd.Rate(mgate_L, (minf_L-mgate_L)/tau_Lm)
 
-
 """
   NOTE: 'mgate' and 'm_gate' are different. 'mgate' is an object of class rxd.State, representing
   open probability value. We are telling NEURON 'who' we are interested in, which in this case are the
@@ -172,7 +167,6 @@ Eca = 1e3 * h.R * (h.celsius + 273.15) * log(cao/cai) / (2* h.FARADAY)
 #Conductances
 gna = gnabar * mgate**3 * hgate
 gk = gkbar * ngate**4
-
 
 gca_T = gcabar_T * mgate_T**2 * hgate_T
 gca_N = gcabar_N * mgate_N**2 * hgate_N
