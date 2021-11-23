@@ -32,9 +32,9 @@ e = 1.60217662e-19
 scale = 1e-14/e #convert S to molecules/um2
 gnabar = 0.04*scale # molecules/um2 ms mV (was 3.39291720 #uS)
 gkbar = 0.012*scale # molecules/um2 ms mV (was 1.01787516 #uS)
-gcabar_L = 25e-12*scale ## molecules/um2 ms mV (was 25e-6 #uS)
-gcabar_N = 14e-12*scale # molecules/um2 ms mV (was 14e-6 #uS)
-gcabar_T = 8e-12*scale # molecules/um2 ms mV (was 8e-6 #uS)
+gcabar_L = 25e-5*scale ## molecules/um2 ms mV (was 25e-6 #uS)
+gcabar_N = 14e-5*scale # molecules/um2 ms mV (was 14e-6 #uS)
+gcabar_T = 8e-5*scale # molecules/um2 ms mV (was 8e-6 #uS)
 gl = 0.0003*scale # (was 0.001413716 #uS) molecules/um2 ms mV, assuming 30 um soma diameter and transmembrane resistance of 20000 Ohm*cm^2
 el = -70
 q10 = 3.0**((h.celsius - 37.0)/10.0)
@@ -227,6 +227,7 @@ nvec = h.Vector().record(ngate[cyt].nodes(soma1(0.5))._ref_value)
 hvec = h.Vector().record(hgate[cyt].nodes(soma1(0.5))._ref_value)
 kvec = h.Vector().record(soma1(0.5)._ref_ik)
 navec = h.Vector().record(soma1(0.5)._ref_ina)
+cavec = h.Vector().record(soma1(0.5)._ref_ica)
 
 mT_vec = h.Vector().record(mgate_T[cyt].nodes(soma1(0.5))._ref_value)
 hT_vec = h.Vector().record(hgate_T[cyt].nodes(soma1(0.5))._ref_value)
@@ -259,7 +260,14 @@ pyplot.plot(tvec, kvec.as_numpy(), '-b', label = 'k')
 pyplot.plot(tvec, navec.as_numpy(), '-r', label = 'na')
 pyplot.xlabel('t (ms)')
 pyplot.ylabel('current (mA/cm$^2$)')
-pyplot.axis([0, 100, -2, 2])
+pyplot.axis([0, 100, -0.5, 0.5])
+pyplot.legend(frameon = False)
+
+fig = pyplot.figure()
+pyplot.plot(tvec, cavec.as_numpy(), '-b', label = 'ca')
+pyplot.xlabel('t (ms)')
+pyplot.ylabel('current (mA/cm$^2$)')
+pyplot.axis([0, 100, -1e-2, 1e-2])
 pyplot.legend(frameon = False)
 
 fig = pyplot.figure()
